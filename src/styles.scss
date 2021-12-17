@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+// variables 
+$purple: "#7C5DFA";
+$purple-brighter: "#9277FF";
+$navy-blue: "#1E2139";
+$navy-blue-brighter: "#252945";
+$white-cloud: "DFE3FA";
+$grey-purple: "888EBO";
+$grey-purple-brighter: "7E88C3";
+$black: "0C0E16";
+$red: "EC5757";
+$pink: "9277FF";
+$light-bg: "F8F8FB";
+$black-bg: "141625";
+
+$spartan: "Spartan", sans-serif;
+
+
+$break-1: "(max-width:1023px)";
+$break-2: "(min-width: 768px) and (max-width: 1023px)";
+$break-3: "(min-width: 1024px)";
+
+// css reset 
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    margin: 0;
+}
+html, body {
+    margin: 0;
+    font-size: 16px;
+    font-family: $spartan;
+}
+// basic style 
+
+// media quary 
+@media #{$break-1} {
+
+}
+@media #{$break-2} {
+
+}
+@media #{$break-3} {
+    
+}

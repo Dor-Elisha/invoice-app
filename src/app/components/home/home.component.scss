@@ -1,0 +1,151 @@
+// variables 
+$purple: #7C5DFA;
+$purple-brighter: #9277FF;
+$navy-blue: #1E2139;
+$navy-blue-brighter: #252945;
+$white-cloud: #DFE3FA;
+$grey-purple: #888EB0;
+$grey-purple-brighter: #7E88C3;
+$black: #0C0E16;
+$red: #EC5757;
+$pink: #9277FF;
+$light-bg: #F8F8FB;
+$black-bg: #141625;
+
+$spartan: "Spartan", sans-serif;
+
+$break-1: "(max-width:1023px)";
+$break-2: "(min-width: 768px) and (max-width: 1023px)";
+$break-3: "(min-width: 1024px)";
+
+// css reset 
+
+button {
+    background-color: unset;
+    border: 0;
+}
+
+// basic style 
+.container {
+    min-height: 100vh;
+    >header {
+        .sidebar {
+            background-color: $navy-blue-brighter;
+
+            .logo {
+                position: relative;
+                .background {
+                }
+            }
+            .profile-picture {
+                .bg-mode {
+                    .bg-mood {
+                    }
+                }
+            }
+        }
+    }
+}
+// media quary 
+@media #{$break-1} {
+    .container {
+        >header {
+            margin-bottom: 2rem;
+            .sidebar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                height: 5rem;
+                .logo {
+                    .background {
+                        width: 5rem;
+                        height: 5rem;
+                        background-color: $purple;
+                        border-top-right-radius: 25%;
+                        border-bottom-right-radius: 25%;
+
+                        display: grid;
+                        place-content: center;
+                        
+                        position: relative;
+                        overflow: hidden;
+
+                        &:after {
+                            position: absolute;
+                            top: 50%;
+                            left: 0;
+                            content: "";
+                            width: 100%;
+                            height: 50%;
+                            background-color: $purple-brighter;
+                            border-top-left-radius: 1.5rem;
+                        }
+
+                        >img {
+                            z-index: 2;
+                        }
+                    }
+                }
+                .profile-picture {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    height: 100%;
+                    
+                    .bg-mood {
+                        display: grid;
+                        place-content: center;
+
+                        height: 100%;
+
+                        .moon {
+                            width: 125%;
+                        }
+                        .sun {
+                            display: none;
+                        }
+                    }
+                    .avatar-image {
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+
+                        >img {
+                            transform: scale(0.5);
+                            border-radius: 50%;
+                        }
+                        &:after {
+                            content: "";
+                            height: 100%;
+                            border: 1px grey solid;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            opacity: .2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media #{$break-3} {
+.container {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    >header {
+        width: 6rem;
+        min-height: 100%;
+        .sidebar {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            .logo {
+
+            }
+        }
+    }
+}
+}
