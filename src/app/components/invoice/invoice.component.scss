@@ -19,7 +19,15 @@ $break-2: "(min-width: 768px) and (max-width: 1023px)";
 $break-3: "(min-width: 1024px)";
 
 // css reset 
-
+.container {
+    .container-header {
+        .title {
+            >h2 {
+                font-weight: 500;
+            }
+        }
+    }
+}
 // basic style 
 .container {
     .container-header{
@@ -149,6 +157,29 @@ $break-3: "(min-width: 1024px)";
                     .for1023 {
                         display:block;
                     }
+                }
+            }
+        }
+    }
+}
+@media #{$break-3} {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-template-rows: 6rem 1fr;
+        place-content: center;
+        padding-block-start: 4rem;
+
+        .container-header {
+            display: flex;
+            width: clamp(55rem, 60vw, 65rem);
+
+            .title {
+                >h1 {
+                    font-size: clamp(2.2rem, 3vw, 2.5rem);
+                }
+                >h2 {
+                    font-size: clamp(1rem, 1vw, 1.2rem);
                 }
             }
         }

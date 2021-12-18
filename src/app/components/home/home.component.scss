@@ -32,14 +32,55 @@ button {
         .sidebar {
             background-color: $navy-blue-brighter;
 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
             .logo {
                 position: relative;
                 .background {
+                    background-color: $purple;
+                    border-top-right-radius: 25%;
+                    border-bottom-right-radius: 25%;
+                    display: grid;
+                    place-content: center;
+                        
+                    position: relative;
+                    overflow: hidden;
+                    &:after {
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        content: "";
+                        width: 100%;
+                        height: 50%;
+                        background-color: $purple-brighter;
+                        border-top-left-radius: 1.5rem;
+                    }
+                    >img {
+                        z-index: 2;
+                    }
                 }
             }
             .profile-picture {
+                display: grid;
                 .bg-mode {
+                    display: grid;
+                    place-content: center;
                     .bg-mood {
+                        >button {
+                            .moon {
+
+                            }
+                            .sun {
+                                display: none;
+                            }
+                        }
+                    }
+                }
+                .avatar-image {
+                    >img {
+                        border-radius: 50%;
                     }
                 }
             }
@@ -52,57 +93,22 @@ button {
         >header {
             margin-bottom: 2rem;
             .sidebar {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
                 height: 5rem;
                 .logo {
                     .background {
                         width: 5rem;
                         height: 5rem;
-                        background-color: $purple;
-                        border-top-right-radius: 25%;
-                        border-bottom-right-radius: 25%;
-
-                        display: grid;
-                        place-content: center;
-                        
-                        position: relative;
-                        overflow: hidden;
-
-                        &:after {
-                            position: absolute;
-                            top: 50%;
-                            left: 0;
-                            content: "";
-                            width: 100%;
-                            height: 50%;
-                            background-color: $purple-brighter;
-                            border-top-left-radius: 1.5rem;
-                        }
-
-                        >img {
-                            z-index: 2;
-                        }
                     }
                 }
                 .profile-picture {
-                    display: grid;
                     grid-template-columns: 1fr 1fr;
                     height: 100%;
                     
                     .bg-mood {
-                        display: grid;
-                        place-content: center;
-
                         height: 100%;
 
                         .moon {
                             width: 125%;
-                        }
-                        .sun {
-                            display: none;
                         }
                     }
                     .avatar-image {
@@ -112,7 +118,6 @@ button {
 
                         >img {
                             transform: scale(0.5);
-                            border-radius: 50%;
                         }
                         &:after {
                             content: "";
@@ -130,22 +135,58 @@ button {
     }
 }
 @media #{$break-3} {
-.container {
-    display: grid;
-    grid-template-columns: 5rem 1fr;
-    >header {
-        width: 6rem;
-        min-height: 100%;
-        .sidebar {
+    .container {
+        display: grid;
+        grid-template-columns: 6rem 1fr;
+        
+        >header {
+            width: 6rem;
             min-height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            .logo {
+            .sidebar {
+                min-height: 100%;
+                flex-direction: column;
+                border-top-right-radius: 1.5rem;
+                border-bottom-right-radius: 1.5rem;
+                .logo {
+                    .background {
+                        width: 6rem;
+                        height: 6rem;
+                    }
+                }
+                .profile-picture {
+                    display: grid;
+                    width: 6rem;
+                    grid-template-rows: 1fr 1fr;
 
+                    .bg-mode {
+                        .bg-mood {
+                            >button {
+                                .moon {
+                                    width: 1.75rem;
+                                }
+                            }
+                        }
+                    }
+                    .avatar-image {
+                        display: grid;
+                        place-content: center;
+                        height: 6rem;
+                        position: relative;
+                        >img {
+                            width: 3rem;
+                        }
+                        &:after {
+                            content: "";
+                            width: 100%;
+                            border: 1px grey solid;
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            opacity: .2;
+                        }
+                    }
+                }
             }
         }
     }
-}
 }
