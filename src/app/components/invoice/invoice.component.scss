@@ -109,8 +109,8 @@ $break-3: "(min-width: 1024px)";
 
                             &:before {
                                 position: relative;
-                                content: ".";
-                                font-size:3rem;
+                                content: "";
+                                opacity: .6;
                             }
                         }
                         .paidBtn {
@@ -251,12 +251,24 @@ $break-3: "(min-width: 1024px)";
                             grid-area: status;
                             display: flex;
                             justify-content: flex-end;
+                            width: 13rem;
+                            justify-self: flex-end;
                             >h2 {
-                                width: 10rem;
+                                width: 65%;
                                 height: 4rem;
                                 text-align: center;
                                 font-size: 1.2rem;
                                 border-radius: 1rem;
+
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+
+                                &:before {
+                                    border: .4rem solid;
+                                    border-radius: 50%;
+                                    margin-inline-end: .5rem;
+                                }
                             }
                         }
                     }
@@ -294,23 +306,43 @@ $break-3: "(min-width: 1024px)";
 
                         .invoice-id {
                             margin: 0;
-                            width: 6rem;
+                            width: clamp(5rem, 11vw ,7rem);
                             >h2 {
-                                font-size:clamp(.8rem, 1.5vw ,1rem)
+                                font-size:clamp(.8rem, 1.5vw ,1rem);
                             }
                         }
                         .invoice-due {
-                            width: 10rem;
+                            width: clamp(8.5rem, 15vw ,10rem);
+                            >h2 {
+                                font-size:clamp(.8rem, 1.5vw ,1rem);
+
+                            }
                         }
                         .invoice-cName {
-                            width: 9rem;
-                            justify-content: flex-start;
+                            width: clamp(10rem, 22vw ,14rem);
+                            justify-content: center;
+                            >h2 {
+                                font-size:clamp(.8rem, 1.5vw ,1.1rem);
+
+                            }
                         }
                         .invoice-total {
-                            width: 10rem;
+                            width: clamp(7rem, 16vw ,10rem);
+                            >h2 {
+                                font-size:clamp(1rem, 2vw ,1.2rem);
+
+                            }
                         }
                         .invoice-status {
-                            margin-inline-end: 1rem;
+                            width: unset;
+                            >h2 {
+                                width: clamp(7rem, 14vw ,9rem);
+                                // width: 7rem;
+                                height: 3.5rem;
+                                font-size: 1.2rem;
+                                // font-size: .8rem;
+                                
+                            }
                         }
                     }
                 }
