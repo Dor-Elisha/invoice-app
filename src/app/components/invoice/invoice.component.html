@@ -1,28 +1,34 @@
 <div class="container">
     <div class="container-header">
-        <div class="title">
+        <div class="title" [ngSwitch]=thereIsInvoice>
             <h1>Invoices</h1>
-            <h2>No invoices</h2>
+            <h2 *ngSwitchCase="false">No invoices</h2>
+            <h2 *ngSwitchCase="true">
+                <span class="for1023">There are</span>
+                {{invoiceNum}} 
+                <span class="for1023"> total </span>
+                invoices
+            </h2>
         </div>
         <div class="buttons">
             <div class="filter">
-                <h2>Filter</h2>
+                <h2>Filter <span class="for1023">by status</span></h2>
                 <div class="downarrow">
                     <img src="assets/icon-arrow-down.svg" alt="arrow down">
                 </div>
             </div>
-            <div class="new">
+            <div class="new" (click)="NewInvoiceToggle()">
                 <div class="plus">
                     <img src="assets/icon-plus.svg" alt="plus icon">
                 </div>
-                <h2>new</h2>
+                <h2>New</h2>
                 <h2 class="for1023">Invoice</h2>
             </div>
         </div>
     </div>
 
-    <div class="container-section">
-        <div class="not-found">
+    <div class="container-section" [ngSwitch]=thereIsInvoice>
+        <div class="not-found" *ngSwitchCase="false">
             <div class="not-found-image">
                 <img src="assets/illustration-empty.svg" alt="illustration-empty">
             </div>
@@ -32,5 +38,34 @@
                     New button and get started</p>
             </div>
         </div>
+        <div class="found" *ngSwitchCase="true">
+            <div class="invoices">
+                <div class="invoice" *ngFor="let invoice of invoiceData">
+                    <div class="invoice-id">
+                        <h2><span>#</span>{{invoice.id}}</h2>
+                    </div>
+                    <div class="invoice-due">
+                        <h2>Due {{invoice.paymentDue | date:'dd MMM y'}}</h2>
+                    </div>
+                    <div class="invoice-cName">
+                        <h2>{{invoice.clientName}}</h2>
+                    </div>
+                    <div class="invoice-total">
+                        <h2>{{invoice.total | currency:'GBP':'symbol':'1.2-2'}}</h2>
+                    </div>
+                    <div class="invoice-status">
+                        <h2 #invS >{{invoice.status | titlecase}}</h2>
+                    </div>
+                    <div class="icon for768">
+                        <img src="assets/icon-arrow-right.svg" alt="icon arrow right">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+
+<div class="popup">
+    <app-add-invoice *ngIf="addInvoice"></app-add-invoice>
+    <app-edit-invoice *ngIf="editInvoice"></app-edit-invoice>
 </div>

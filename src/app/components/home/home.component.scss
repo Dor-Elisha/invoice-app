@@ -27,6 +27,7 @@ button {
 
 // basic style 
 .container {
+    background-color: $light-bg;
     min-height: 100vh;
     >header {
         .sidebar {
