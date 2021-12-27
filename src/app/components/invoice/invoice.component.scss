@@ -38,6 +38,76 @@ $break-3: "(min-width: 1024px)";
             }
         }
         .buttons {
+            .filter {
+                position: relative;
+                cursor: pointer;
+
+                .dropDownContent-filter {
+                    position: absolute;
+                    top: 2rem;
+                    min-height: 10rem;
+                    padding: 1rem;
+                    border-radius: .5rem;
+                    box-shadow: 0px 10px 20px rgba(72, 84, 159, 0.25);
+                    background-color:white;
+
+                    display:flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    z-index: 1;
+                    cursor: pointer;
+
+                    >label {
+                        font-weight: bold;
+                        position: relative;
+                        display: flex;
+                        padding-inline-start: 2.5rem;
+                        cursor: pointer;
+                        >input {
+                            position: absolute;
+                            opacity: 0;
+                            cursor: pointer;
+                            height: 0;
+                            width: 0;
+                        }
+                        .checkmark {
+                            position: absolute;
+                            top: -.2rem;
+                            left: 0;
+                            height: 25px;
+                            width: 25px;
+                            background-color: rgba(124,93,250, 0.2);
+                            border: 1px $purple solid;
+                            border-radius:.4rem;
+                            
+
+                            &:after {
+                                content: "";
+                                position: absolute;
+                                display: none;
+                                left: 9px;
+                                top: 5px;
+                                width: 5px;
+                                height: 10px;
+                                border: solid white;
+                                border-width: 0 3px 3px 0;
+                                -webkit-transform: rotate(45deg);
+                                -ms-transform: rotate(45deg);
+                                transform: rotate(45deg);
+                            }
+                        }
+                        &:hover input ~ .checkmark {
+                              background-color: $purple;
+                        }
+                        >input:checked ~ .checkmark {
+                            background-color: $purple;
+                        }
+                        >input:checked ~ .checkmark:after {
+                            display: block;
+                        }
+                    }
+                }
+            }
             .new {
                 display: flex;
                 align-items: center;
@@ -131,6 +201,9 @@ $break-3: "(min-width: 1024px)";
         }
     }
 }
+.none {
+    display: none;
+}
 
 // media quary 
 @media #{$break-1} {
@@ -159,7 +232,8 @@ $break-3: "(min-width: 1024px)";
                 .filter {
                     display: flex;
                     align-items: center;
-                    gap: .5rem;
+                    gap: 1.5rem;
+                    
                     >h2 {
                         font-size: 1rem;
                     }
@@ -167,6 +241,12 @@ $break-3: "(min-width: 1024px)";
                         >img {
                             width: 1rem;
                         }
+                    }
+                    .dropDownContent-filter {
+                        width: 10rem;
+                        left: -3rem;
+                        display: flex;
+
                     }
                 }
                 .new {
@@ -286,7 +366,14 @@ $break-3: "(min-width: 1024px)";
 @media #{$break-2} {
     .container {
         .container-header {
+            grid-template-columns: 20% clamp(18rem, 36vw, 20rem);
             .buttons {
+                .filter {
+                    .dropDownContent-filter {
+                        width: clamp(10rem, 18vw, 12rem);
+                        left: -3rem;
+                    }
+                }
                 .new {
                     >h2 {
                         content: "New Invoice";
@@ -337,10 +424,8 @@ $break-3: "(min-width: 1024px)";
                             width: unset;
                             >h2 {
                                 width: clamp(7rem, 14vw ,9rem);
-                                // width: 7rem;
                                 height: 3.5rem;
-                                font-size: 1.2rem;
-                                // font-size: .8rem;
+                                font-size: clamp(1rem, 2vw, 1.2rem);
                                 
                             }
                         }
@@ -387,6 +472,11 @@ $break-3: "(min-width: 1024px)";
 
                     >h2 {
                         font-size:1rem;
+                    }
+                    .dropDownContent-filter {
+                        width: 14rem;
+                        left: -2rem;
+                        padding-block: 1.5rem;
                     }
                 }
                 .new {

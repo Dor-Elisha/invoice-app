@@ -6,7 +6,8 @@ import { invoice } from '../../../assets/invoice';
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.scss']
+  styleUrls: ['./invoice.component.scss'],
+  styles: []
 })
 export class InvoiceComponent implements OnInit, AfterViewInit {
   
@@ -14,6 +15,12 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
   thereIsInvoice!: boolean;
   addInvoice!: boolean ;
   editInvoice!: boolean;
+  toggleFilterMenu: boolean = false;
+
+  draftCheckBox: boolean = false;
+  pendingCheckBox: boolean = false;
+  paidCheckBox: boolean = false;
+
   @ViewChildren('invS') invS!: QueryList<ElementRef>;
 
   constructor(private http: HttpClient) {
@@ -23,12 +30,14 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
   }
   
   invoiceData!: any;
+  filterdInvoiceData!: any;
   
   ngOnInit(): void {
 
     this.http.get("assets/data.json").subscribe (data => {
       JSON.stringify(data)
       this.invoiceData = data;
+      this.filterdInvoiceData = this.invoiceData;
       this.invoiceNum = this.invoiceData.length;
       console.log(this.invoiceData);
       
@@ -54,7 +63,29 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
     
     
   }
- 
+
+  toggleFilter(): void {
+    this.toggleFilterMenu = !this.toggleFilterMenu;
+  }
+  toggleDraft(): void {
+    this.draftCheckBox = !this.draftCheckBox;
+    console.log(this.draftCheckBox);
+  }
+  togglePending():void {
+    this.pendingCheckBox = !this.pendingCheckBox;
+    console.log(this.pendingCheckBox);
+    
+  }
+  togglePaid():void {
+    this.paidCheckBox = !this.paidCheckBox;
+    console.log(this.paidCheckBox);
+    
+  }
+  filterInvoice(filterd:string): void {
+    console.log(filterd);
+    
+    
+  }
   NewInvoiceToggle(): void {
     this.addInvoice = !this.addInvoice;
   }

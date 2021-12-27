@@ -12,9 +12,23 @@
         </div>
         <div class="buttons">
             <div class="filter">
-                <h2>Filter <span class="for1023">by status</span></h2>
-                <div class="downarrow">
+                <h2 (click)="toggleFilter()">Filter <span class="for1023">by status</span></h2>
+                <div class="downarrow"  (click)="toggleFilter()">
                     <img src="assets/icon-arrow-down.svg" alt="arrow down">
+                </div>
+                <div [class.dropDownContent-filter]="toggleFilterMenu" class="none">
+                    <label class="customCheckBox" >Draft
+                        <input type="checkbox" (click)="filterInvoice('draft')" (click)=toggleDraft()>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="customCheckBox">Pending
+                        <input type="checkbox" (click)="filterInvoice('pending')" (click)=togglePending()>
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="customCheckBox">Paid
+                        <input type="checkbox" (click)="filterInvoice('paid')" (click)=togglePaid()>
+                        <span class="checkmark"></span>
+                    </label>
                 </div>
             </div>
             <div class="new" (click)="NewInvoiceToggle()">
@@ -40,7 +54,7 @@
         </div>
         <div class="found" *ngSwitchCase="true">
             <div class="invoices">
-                <div class="invoice" *ngFor="let invoice of invoiceData">
+                <div class="invoice" *ngFor="let invoice of filterdInvoiceData">
                     <div class="invoice-id">
                         <h2><span>#</span>{{invoice.id}}</h2>
                     </div>
