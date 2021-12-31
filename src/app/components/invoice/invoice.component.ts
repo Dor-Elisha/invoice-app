@@ -1,13 +1,15 @@
 import { Component, OnInit , ViewChildren, ElementRef, QueryList , ViewChild, AfterViewChecked, AfterViewInit} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { invoice } from '../../../assets/invoice';
+import { fade, invoiceAni } from 'src/app/animation';
 
 
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
   styleUrls: ['./invoice.component.scss'],
-  styles: []
+  styles: [],
+  animations: [fade, invoiceAni]
 })
 export class InvoiceComponent implements OnInit, AfterViewInit {
   
@@ -20,6 +22,7 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
   draftCheckBox: boolean = false;
   pendingCheckBox: boolean = false;
   paidCheckBox: boolean = false;
+  statusFilter!: string;
 
   @ViewChildren('invS') invS!: QueryList<ElementRef>;
 
@@ -42,6 +45,7 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
       console.log(this.invoiceData);
       
       this.thereIsInvoice = true;
+      this.statusFilter = 'all';
     })
   }
 
@@ -67,24 +71,18 @@ export class InvoiceComponent implements OnInit, AfterViewInit {
   toggleFilter(): void {
     this.toggleFilterMenu = !this.toggleFilterMenu;
   }
-  toggleDraft(): void {
-    this.draftCheckBox = !this.draftCheckBox;
-    console.log(this.draftCheckBox);
-  }
-  togglePending():void {
-    this.pendingCheckBox = !this.pendingCheckBox;
-    console.log(this.pendingCheckBox);
-    
-  }
-  togglePaid():void {
-    this.paidCheckBox = !this.paidCheckBox;
-    console.log(this.paidCheckBox);
-    
-  }
-  filterInvoice(filterd:string): void {
-    console.log(filterd);
-    
-    
+  filterInvoice(filterd:string ): void {
+    if (filterd != 'all') {
+      this.filterdInvoiceData = this.invoiceData.filter((invoice:any) =>
+      invoice.status.toLowerCase().includes(filterd)
+      )
+    } else {
+      this.filterdInvoiceData = this.invoiceData; 
+    }
+    this.statusFilter = filterd;
+    setTimeout(()=> {
+      this.toggleFilterMenu = false;
+    }, 500)
   }
   NewInvoiceToggle(): void {
     this.addInvoice = !this.addInvoice;

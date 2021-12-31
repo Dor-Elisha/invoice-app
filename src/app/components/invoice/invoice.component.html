@@ -16,17 +16,23 @@
                 <div class="downarrow"  (click)="toggleFilter()">
                     <img src="assets/icon-arrow-down.svg" alt="arrow down">
                 </div>
-                <div [class.dropDownContent-filter]="toggleFilterMenu" class="none">
+                <div class="dropDownContent-filter"
+                    *ngIf="toggleFilterMenu"
+                    @fade>
                     <label class="customCheckBox" >Draft
-                        <input type="checkbox" (click)="filterInvoice('draft')" (click)=toggleDraft()>
+                        <input type="radio" (click)="filterInvoice('draft')" name="statusFilter" [checked]="statusFilter === 'draft' ? true : false">
                         <span class="checkmark"></span>
                     </label>
                     <label class="customCheckBox">Pending
-                        <input type="checkbox" (click)="filterInvoice('pending')" (click)=togglePending()>
+                        <input type="radio" (click)="filterInvoice('pending')" name="statusFilter" [checked]="statusFilter === 'pending' ? true : false">
                         <span class="checkmark"></span>
                     </label>
                     <label class="customCheckBox">Paid
-                        <input type="checkbox" (click)="filterInvoice('paid')" (click)=togglePaid()>
+                        <input type="radio" (click)="filterInvoice('paid')" name="statusFilter" [checked]="statusFilter === 'paid' ? true : false">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="customCheckBox">All
+                        <input type="radio" (click)="filterInvoice('all')" name="statusFilter" [checked]="statusFilter === 'all' ? true : false">
                         <span class="checkmark"></span>
                     </label>
                 </div>
@@ -53,7 +59,7 @@
             </div>
         </div>
         <div class="found" *ngSwitchCase="true">
-            <div class="invoices">
+            <div class="invoices" @invoiceAni>
                 <div class="invoice" *ngFor="let invoice of filterdInvoiceData">
                     <div class="invoice-id">
                         <h2><span>#</span>{{invoice.id}}</h2>
