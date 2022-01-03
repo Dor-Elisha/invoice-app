@@ -9,7 +9,7 @@ export let fade = trigger('fade', [
 ]);
 
 export let invoiceAni = trigger('invoiceAni', [
-    transition(":enter", [
+    transition('* => *', [
         query(".invoice", [
             style({transform: "translateY(-2rem)", opacity: 0})
         ]),
@@ -20,6 +20,5 @@ export let invoiceAni = trigger('invoiceAni', [
                 ])
             ])
         ])
-
     ])
 ]);

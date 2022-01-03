@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="found" *ngSwitchCase="true">
-            <div class="invoices" @invoiceAni>
+            <div class="invoices" [@invoiceAni]="filterdInvoiceData.length">
                 <div class="invoice" *ngFor="let invoice of filterdInvoiceData">
                     <div class="invoice-id">
                         <h2><span>#</span>{{invoice.id}}</h2>
